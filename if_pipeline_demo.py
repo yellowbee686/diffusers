@@ -12,7 +12,7 @@ image = pipe(prompt_embeds=prompt_embeds, negative_prompt_embeds=negative_embeds
 
 # save intermediate image
 pil_image = pt_to_pil(image)
-pil_image[0].save("./demo/if_stage_I.png")
+pil_image[0].save("./demo/if_stage_1.png")
 
 super_res_1_pipe = IFSuperResolutionPipeline.from_pretrained("DeepFloyd/IF-II-L-v1.0", text_encoder=None, variant="fp16", torch_dtype=torch.float16, local_files_only=True)
 super_res_1_pipe.enable_model_cpu_offload()
@@ -21,7 +21,7 @@ image = super_res_1_pipe(image=image, prompt_embeds=prompt_embeds, negative_prom
 
 # save intermediate image
 pil_image = pt_to_pil(image)
-pil_image[0].save("./demo/if_stage_II.png")
+pil_image[0].save("./demo/if_stage_2.png")
 
 safety_modules = {
     "feature_extractor": pipe.feature_extractor,
@@ -37,4 +37,4 @@ image = super_res_2_pipe(
     prompt=prompt,
     image=image,
 ).images
-image[0].save("./demo/if_stage_III.png")
+image[0].save("./demo/if_stage_3.png")
