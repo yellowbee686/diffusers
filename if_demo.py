@@ -33,7 +33,7 @@ prompt_embeds, negative_embeds = stage_1.encode_prompt(prompt)
 image = stage_1(
     prompt_embeds=prompt_embeds, negative_prompt_embeds=negative_embeds, generator=generator, output_type="pt"
 ).images
-pt_to_pil(image)[0].save("./if_stage_I.png")
+pt_to_pil(image)[0].save("./demo/if_stage_I.png")
 
 # stage 2
 image = stage_2(
@@ -43,8 +43,8 @@ image = stage_2(
     generator=generator,
     output_type="pt",
 ).images
-pt_to_pil(image)[0].save("./if_stage_II.png")
+pt_to_pil(image)[0].save("./demo/if_stage_II.png")
 
 # stage 3
 image = stage_3(prompt=prompt, image=image, noise_level=100, generator=generator).images
-image[0].save("./if_stage_III.png")
+image[0].save("./demo/if_stage_III.png")
