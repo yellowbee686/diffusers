@@ -3,12 +3,12 @@ from diffusers.utils import pt_to_pil
 import torch
 
 # stage 1
-stage_1 = DiffusionPipeline.from_pretrained("DeepFloyd/IF-I-XL-v1.0", variant="fp16", torch_dtype=torch.float16)
+stage_1 = DiffusionPipeline.from_pretrained("DeepFloyd/IF-I-XL-v1.0", variant="fp16", torch_dtype=torch.float16, local_files_only=True)
 stage_1.enable_model_cpu_offload()
 
 # stage 2
 stage_2 = DiffusionPipeline.from_pretrained(
-    "DeepFloyd/IF-II-L-v1.0", text_encoder=None, variant="fp16", torch_dtype=torch.float16
+    "DeepFloyd/IF-II-L-v1.0", text_encoder=None, variant="fp16", torch_dtype=torch.float16, local_files_only=True
 )
 stage_2.enable_model_cpu_offload()
 
@@ -19,7 +19,7 @@ safety_modules = {
     "watermarker": stage_1.watermarker,
 }
 stage_3 = DiffusionPipeline.from_pretrained(
-    "stabilityai/stable-diffusion-x4-upscaler", **safety_modules, torch_dtype=torch.float16
+    "stabilityai/stable-diffusion-x4-upscaler", **safety_modules, torch_dtype=torch.float16, local_files_only=True
 )
 stage_3.enable_model_cpu_offload()
 
