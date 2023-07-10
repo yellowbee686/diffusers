@@ -5,7 +5,7 @@ import torch
 pipe = IFPipeline.from_pretrained("DeepFloyd/IF-I-XL-v1.0", variant="fp16", torch_dtype=torch.float16, local_files_only=True)
 pipe.enable_model_cpu_offload()
 
-prompt = 'a photo of a kangaroo wearing an orange hoodie and blue sunglasses standing in front of the eiffel tower holding a sign that says "very deep learning"'
+prompt = 'extreme closeup candid shot of a Chinese young woman, wavy brown hair, showing every detail on her face, realistic skin, natural beauty, EOS 5D, 200mm lens, --ar 4:3 --v 5.2'
 prompt_embeds, negative_embeds = pipe.encode_prompt(prompt)
 
 image = pipe(prompt_embeds=prompt_embeds, negative_prompt_embeds=negative_embeds, output_type="pt").images
