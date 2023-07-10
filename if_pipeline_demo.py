@@ -6,7 +6,8 @@ pipe = IFPipeline.from_pretrained("DeepFloyd/IF-I-XL-v1.0", variant="fp16", torc
 pipe.enable_model_cpu_offload()
 
 # prompt = 'A Chinese young, handsome swordman named Li Bai, The blade of Wugou sword was as bright as frost and snow. The silver saddle lighted the white horse, Rustling like a meteor when running'
-prompt = "A Chinese young, handsome swordman, with his sword gleams as brilliantly as frost and snow. he ride a gallant white steed. When they gallop, their combined force is like a swift meteor, streaking across the vast expanse, a poignant picture of might and elegance."
+# prompt = "A Chinese young, handsome swordman, wears his sword gleams very brilliantly, shows a heroic spirit. he ride a gallant white steed. When they gallop, their combined force is like a swift meteor, streaking across the vast expanse, a poignant picture of might and elegance."
+prompt = "A Chinese young, handsome swordman, wears his sword gleams very brilliantly, shows a heroic spirit. he ride a gallant white steed. His speed is like shadow or swift meteor."
 prompt_embeds, negative_embeds = pipe.encode_prompt(prompt)
 
 image = pipe(prompt_embeds=prompt_embeds, negative_prompt_embeds=negative_embeds, output_type="pt").images
