@@ -27,7 +27,7 @@ pil_image[0].save("./demo/if_stage_2.png")
 
 safety_modules = {
     "feature_extractor": pipe.feature_extractor,
-    "safety_checker": super_res_1_pipe.safety_checker,
+    # "safety_checker": super_res_1_pipe.safety_checker,
     "watermarker": pipe.watermarker,
 }
 super_res_2_pipe = DiffusionPipeline.from_pretrained(
@@ -37,6 +37,6 @@ super_res_2_pipe.enable_model_cpu_offload()
 
 image = super_res_2_pipe(
     prompt=prompt,
-    image=image,
+    image=pil_image,
 ).images
 image[0].save("./demo/if_stage_3.png")
