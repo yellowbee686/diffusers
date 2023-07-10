@@ -1,5 +1,5 @@
 from diffusers import IFPipeline, IFSuperResolutionPipeline, DiffusionPipeline
-from diffusers.utils import pt_to_pil, pt_to_numpy
+from diffusers.utils import pt_to_pil
 import torch
 
 pipe = IFPipeline.from_pretrained("DeepFloyd/IF-I-XL-v1.0", variant="fp16", torch_dtype=torch.float16, local_files_only=True)
@@ -23,7 +23,7 @@ image = super_res_1_pipe(image=image, prompt_embeds=prompt_embeds, negative_prom
 pil_image = pt_to_pil(image)
 pil_image[0].save("./demo/if_stage_2.png")
 
-numpy_img = pt_to_numpy(image)
+# numpy_img = pt_to_numpy(image)
 
 safety_modules = {
     "feature_extractor": pipe.feature_extractor,
