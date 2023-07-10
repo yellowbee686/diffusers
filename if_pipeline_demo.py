@@ -31,7 +31,7 @@ pil_image[0].save("./demo/if_stage_2.png")
 safety_modules = {
     "feature_extractor": pipe.feature_extractor,
     # "safety_checker": super_res_1_pipe.safety_checker,
-    "watermarker": pipe.watermarker,
+    # "watermarker": pipe.watermarker,
 }
 super_res_2_pipe = DiffusionPipeline.from_pretrained(
     "stabilityai/stable-diffusion-x4-upscaler", **safety_modules, torch_dtype=torch.float16, local_files_only=True
