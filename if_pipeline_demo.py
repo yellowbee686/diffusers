@@ -5,7 +5,8 @@ import torch
 pipe = IFPipeline.from_pretrained("DeepFloyd/IF-I-XL-v1.0", variant="fp16", torch_dtype=torch.float16, local_files_only=True)
 pipe.enable_model_cpu_offload()
 
-prompt = 'A Chinese young , handsome swordman named Li Bai, The blade of Wugou sword was as bright as frost and snow. The silver saddle lighted the white horse, Rustling like a meteor when running'
+# prompt = 'A Chinese young , handsome swordman named Li Bai, The blade of Wugou sword was as bright as frost and snow. The silver saddle lighted the white horse, Rustling like a meteor when running'
+prompt = "A knight-errant carries a sword which is gleams brilliantly, as if it is forged from frost and snow, its razor sharp edge reflecting the cold yet dazzling light. This illumination is further mirrored in the polished silver saddle, which in turn casts a gleaming hue onto the white steed he rides, creating an alluring dance of lights between horse and rider. The sight is nothing short of resplendent, like a waltz of celestial bodies in the night sky. And when he urges his steed into a gallop, it's akin to a meteor streaking across the heavens, casting a breathtaking scene of both strength and beauty. The vision of the heroic figure in flight is so swift, so transient, that it feels as though it is both of this world and not, a fleeting echo of a comet's passing, leaving awe and wonderment in its wake."
 prompt_embeds, negative_embeds = pipe.encode_prompt(prompt)
 
 image = pipe(prompt_embeds=prompt_embeds, negative_prompt_embeds=negative_embeds, output_type="pt").images
