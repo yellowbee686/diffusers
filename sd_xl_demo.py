@@ -1,7 +1,7 @@
 from diffusers import DiffusionPipeline
 import torch
 
-pipe = DiffusionPipeline.from_pretrained("stabilityai/stable-diffusion-xl-base-0.9", torch_dtype=torch.float16, use_safetensors=True, variant="fp16")
+pipe = DiffusionPipeline.from_pretrained("stabilityai/stable-diffusion-xl-base-0.9", torch_dtype=torch.float16, use_safetensors=True, variant="fp16", local_files_only=True)
 pipe.unet = torch.compile(pipe.unet, mode="reduce-overhead", fullgraph=True)
 pipe.to("cuda")
 
@@ -12,7 +12,7 @@ prompt = "With animation style, An east-asian young, handsome swordman, wears hi
 
 image = pipe(prompt=prompt, output_type="latent").images
 
-pipe = DiffusionPipeline.from_pretrained("stabilityai/stable-diffusion-xl-refiner-0.9", torch_dtype=torch.float16, use_safetensors=True, variant="fp16")
+pipe = DiffusionPipeline.from_pretrained("stabilityai/stable-diffusion-xl-refiner-0.9", torch_dtype=torch.float16, use_safetensors=True, variant="fp16", local_files_only=True)
 pipe.unet = torch.compile(pipe.unet, mode="reduce-overhead", fullgraph=True)
 pipe.to("cuda")
 
