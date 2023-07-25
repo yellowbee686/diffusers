@@ -16,7 +16,7 @@ print(f"sta_1 len:{len(images_1)}")
 # for i, img in enumerate(images_1):
 #     pil_images_1 = pt_to_pil(img)
 #     pil_images_1.save(f"./demo/sta_{i}_1.png")
-images_1[0].save(f"./demo/xl_1.png")
+# images_1[0].save(f"./demo/xl_1.png")
 
 pipe = DiffusionPipeline.from_pretrained("stabilityai/stable-diffusion-xl-refiner-0.9", torch_dtype=torch.float16, use_safetensors=True, variant="fp16", local_files_only=True)
 # pipe.unet = torch.compile(pipe.unet, mode="reduce-overhead", fullgraph=True)
@@ -26,7 +26,7 @@ pipe.to("cuda")
 # pipe.enable_xformers_memory_efficient_attention()
 
 images_2 = pipe(prompt=prompt, image=images_1).images
-# for i, img in enumerate(images_2):
-#     img = pt_to_pil(img)
-#     img.save(f"./demo/xl_{i}_2.png")
-images_2[0].save(f"./demo/xl_2.png")
+for i, img in enumerate(images_2):
+    # img = pt_to_pil(img)
+    img.save(f"./demo/xl_{i}_2.png")
+# images_2[0].save(f"./demo/xl_2.png")
