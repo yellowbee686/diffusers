@@ -2,7 +2,7 @@ from diffusers import DiffusionPipeline
 from diffusers.utils import pt_to_pil
 import torch
 
-pipe = DiffusionPipeline.from_pretrained("stabilityai/stable-diffusion-xl-base-0.9", torch_dtype=torch.float16, use_safetensors=True, variant="fp16", local_files_only=True)
+pipe = DiffusionPipeline.from_pretrained("stabilityai/stable-diffusion-xl-base-1.0", torch_dtype=torch.float16, use_safetensors=True, variant="fp16", local_files_only=False)
 # pipe.unet = torch.compile(pipe.unet, mode="reduce-overhead", fullgraph=True)
 pipe.to("cuda")
 
@@ -19,7 +19,7 @@ print(f"sta_1 len:{len(images_1)}")
 #     pil_images_1.save(f"./demo/sta_{i}_1.png")
 # images_1[0].save(f"./demo/xl_1.png")
 
-pipe = DiffusionPipeline.from_pretrained("stabilityai/stable-diffusion-xl-refiner-0.9", torch_dtype=torch.float16, use_safetensors=True, variant="fp16", local_files_only=True)
+pipe = DiffusionPipeline.from_pretrained("stabilityai/stable-diffusion-xl-refiner-1.0", torch_dtype=torch.float16, use_safetensors=True, variant="fp16", local_files_only=False)
 # pipe.unet = torch.compile(pipe.unet, mode="reduce-overhead", fullgraph=True)
 pipe.to("cuda")
 
